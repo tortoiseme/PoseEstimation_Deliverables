@@ -11,6 +11,14 @@
 
 
 2-> Training the model
+  1.Choose/Create model
+	trt_pose already contains several models with different backbone CNN such as ResNet and DensNet with their different variants. The head branch predicts
+	confidence maps and part affinity fields. Under trt_pose/trt_pose/models/ you will find all defined models. Each model takes at least two parameters,
+        cmap_channels and paf_channels corresponding to the number of heatmap channels and part affinity field channels. The number of part affinity field
+        channels is 2x the number of links, because each link has a channel corresponding to the x and y direction of the vector field for each link. By default, 
+	these values are set corresponding to human pose task. If you wish to create a new task for different keypoint detection, you have to correspondly change
+	these parameters.
+  2. Train a model
 	To train the model, you need to create a json file, which contains all training parameters and dataset/annotation directory paths.
 	An example for this json file is also included(trainingConfig.json). Subsequently, this json file should be passed as parameter to the training script,
  	which can be found in trt_pose/train.py to start training.
